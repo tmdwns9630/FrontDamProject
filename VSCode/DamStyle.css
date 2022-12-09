@@ -1,0 +1,8 @@
+body {
+  background-color: cornsilk;
+  color: black;
+}
+
+.list > li {
+  list-style: none;
+}
