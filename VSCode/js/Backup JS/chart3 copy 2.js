@@ -1,3 +1,6 @@
+// 버튼으로 데이터셋 인아웃이 동시에 됨
+// 타임 인터벌로 바꾸기 전.
+
 /*
  * utils.js
  * charts.js 만들기 위한 utils.js 부분
@@ -343,12 +346,15 @@ window.onload = function () {
   //  ======================================================== line1
 };
 
-// x 레이블 가장 끝에 데이터 및 라벨 추가 함수
+// 데이터 추가 버튼
 //설명 : range를 현재 데이터셋 샘플 길이로 잡고
+
 var i = 0;
 var range = datasetSample.data.length;
-const addData_lastLabel = () => {
+
+document.getElementById("addData").addEventListener("click", function () {
   var month;
+
   month = MONTHS[range + i];
 
   Chart.instances[0].config.data.labels.push(month);
@@ -369,11 +375,11 @@ const addData_lastLabel = () => {
   console.log(MONTHS.length);
   console.log(range);
   console.log(i);
-};
+});
 
-// x 레이블 첫번째 데이터 및 라벨 삭제 함수
-//설명 : range를 현재 데이터셋 샘플 길이로 잡고
-const deleteData_firstLabel = () => {
+// 첫번째 값 제거 버튼
+// 을 위의 버튼이랑 같은 버튼에 넣음.
+document.getElementById("addData").addEventListener("click", function () {
   // 데이터 값 세팅
   Chart.instances[0].config.data.labels.shift();
   Chart.instances[0].config.data.datasets.forEach(function (dataset) {
@@ -382,16 +388,4 @@ const deleteData_firstLabel = () => {
   });
   // 데이터 업데이트
   Chart.instances[0].update();
-};
-
-// 버튼으로 데이터 변환
-document.getElementById("addData").addEventListener("click", function () {
-  addData_lastLabel();
-  deleteData_firstLabel();
 });
-
-//n초마다 데이터 변환.
-setInterval(() => {
-  addData_lastLabel();
-  deleteData_firstLabel();
-}, 2000);
