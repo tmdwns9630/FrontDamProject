@@ -17,11 +17,11 @@
     <div class="TotalPage">
       <div class="left_page border_purple_dot">
         <ul class="dam_list">
-          <li>댐1</li>
-          <li>댐2</li>
-          <li>댐3</li>
-          <li>댐4</li>
-          <li>댐5</li>
+          <li>댐 1</li>
+          <li>댐 2</li>
+          <li>댐 3</li>
+          <li>댐 4</li>
+          <li>댐 5</li>
         </ul>
       </div>
       <div class="middle_page border_blue_dot">
@@ -44,6 +44,7 @@
             alt="댐 차트 (임시)"
           /> -->
           <svg class="dam_chart border_pink_dot" alt="댐 차트 (임시)"></svg>
+           
         </div>
       </div>
       <div class="right_page border_red_dot">

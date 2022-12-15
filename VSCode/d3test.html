@@ -2,13 +2,73 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- D3.js -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- 차트 넣을 div를 위한 간단한 css -->
+    <style>
+      .chartBox {
+        background-color: rgba(197, 197, 197, 0.419);
+        width: 600px;
+        height: 400px;
+        border: solid 2px black;
+        margin-bottom: 120px;
+      }
+    </style>
+    <!-- morris.js -->
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css"
+    />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <!-- morris.js -->
+
+    <!-- chartist.js -->
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <!-- chartist.js-->
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js -->
+    <!-- Echart.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script> -->
+    <!-- Echart.js -->
 
     <title>Document</title>
   </head>
   <body>
-    <h2>D3.js Test Now</h2>
-    <svg width="350px" height="350px"></svg>
-    <script src="/d3dj-piechart.js"></script>
+    <h1>각종 차트 Test Now</h1>
+
+    <!-- morris.js -->
+    <h4>1번 타자 : morris.js</h4>
+    <div class="chartBox">
+      <div id="myfirstchart" style="height: 250px"></div>
+    </div>
+
+    <!-- chartist.js-->
+    <h4>2번 타자 : chartist.js</h4>
+    <div class="chartBox">
+      <div class="ct-chart ct-perfect-fourth"></div>
+    </div>
+
+    <!-- Chart.js -->
+    <h4>3번 타자 : chart.js</h4>
+    <button id="firstRemoveData">첫번째 값 삭제</button>
+    <button id="addData">마지막 값 추가</button>
+    <div class="chartBox">
+      <div>
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+
+    <!-- ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁJavaScript 파일ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ -->
+    <script src="/js/morris.js"></script>
+    <script src="/js/chartist.js"></script>
+    <script src="/js/chart.js"></script>
+    <script src="/js/echart.js"></script>
   </body>
 </html>

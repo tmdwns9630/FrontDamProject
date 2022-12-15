@@ -1,9 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
+    <link rel="stylesheet" type="text/css" href="/css/DamStyle.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
+      rel="stylesheet"
+    />
+    <link href="/css/styles.css" rel="stylesheet" /
     <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="/DamStyle.css" />
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"
+      integrity="sha512-QEiC894KVkN9Tsoi6+mKf8HaCLJvyA6QIRzY5KrfINXYuP9NxdIkRQhGq3BZi0J4I7V5SidGM3XUQ5wFiMDuWg=="
+      crossorigin="anonymous"
+    ></script>
     <title>Dam Project</title>
   </head>
   <body>
@@ -15,11 +24,11 @@
     <div class="TotalPage">
       <div class="left_page border_purple_dot">
         <ul class="dam_list">
-          <li>댐1</li>
-          <li>댐2</li>
-          <li>댐3</li>
-          <li>댐4</li>
-          <li>댐5</li>
+          <li>댐 1</li>
+          <li>댐 2</li>
+          <li>댐 3</li>
+          <li>댐</li>
+          <li>댐 5</li>
         </ul>
       </div>
       <div class="middle_page border_blue_dot">
@@ -35,6 +44,7 @@
           </div>
         </div>
 
+        <!-- ㅁㅁㅁㅁㅁㅁㅁㅁ 차트가 들어갈 영역 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ -->
         <div class="chart_area border_pink_dot">
           <!-- <img
             class="dam_chart"
@@ -70,10 +80,6 @@
         </div>
       </div>
     </div>
-    <script src="/d3dj-piechart.js"></script>
+    <script src="js/d3dj-piechart.js"></script>
   </body>
 </html>
-
-<!-- <a href="#" class="btn-gradient blue">Button</a> -->
-<!-- <svg width="350px" height="350px"></svg>
-<script src="/d3dj.js"></script> -->
