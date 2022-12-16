@@ -237,7 +237,7 @@ var config = {
       },
     },
     title: {
-      display: true,
+      display: false,
       // 차트 제목
       text: "Chart.js Line Chart",
     },
@@ -337,7 +337,7 @@ window.onload = function () {
   // 데이터 채우기
   line1Config.data.datasets.push(line1DatasetSample);
   // 타이틀값
-  line1Config.options.title.text = "line1/Fill Option = Start";
+  line1Config.options.title.text = "Area Chart Title";
   // 차트 생성하기
   window.line1 = new Chart(line1, line1Config);
   //  ======================================================== line1
@@ -383,13 +383,13 @@ const deleteData_firstLabel = () => {
   // 데이터 업데이트
   Chart.instances[0].update();
 };
-
+/*
 // 버튼으로 데이터 변환
 document.getElementById("addData").addEventListener("click", function () {
   addData_lastLabel();
   deleteData_firstLabel();
 });
-
+*/
 //n초마다 데이터 변환.
 setInterval(() => {
   addData_lastLabel();

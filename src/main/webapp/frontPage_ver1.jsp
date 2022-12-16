@@ -2,28 +2,41 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
- <link rel="stylesheet" type="text/css" href="css/DamStyle.css" />
-<meta charset="UTF-8">
- <script src="https://d3js.org/d3.v7.min.js"></script>
-<title>Dam Project</title>
-</head>
-<body>
-<header>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/DamStyle.css?after" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"
+      integrity="sha512-QEiC894KVkN9Tsoi6+mKf8HaCLJvyA6QIRzY5KrfINXYuP9NxdIkRQhGq3BZi0J4I7V5SidGM3XUQ5wFiMDuWg=="
+      crossorigin="anonymous"
+    ></script>
+    <title>Dam Project</title>
+  </head>
+  <body>
+    <!--  ■■■■■■■■■■■■■■■■■ 상단 네비게이션 바 ■■■■■■■■■■■■■■■■■■■ -->
+    <header>
       <nav class="navbar">
         <h3>Dam Dashboard</h3>
       </nav>
     </header>
     <div class="TotalPage">
+      <!-- 왼쪽 구역 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
       <div class="left_page border_purple_dot">
         <ul class="dam_list">
           <li>댐 1</li>
           <li>댐 2</li>
           <li>댐 3</li>
-          <li>댐 4</li>
+          <li>댐</li>
           <li>댐 5</li>
         </ul>
       </div>
+      <!--  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 왼쪽 구역-->
+      <!-- 중앙 구역 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
       <div class="middle_page border_blue_dot">
         <div class="sensor_view border_pink_dot">
           <div class="sensor_block externalCard" id="water_level">
@@ -37,16 +50,17 @@
           </div>
         </div>
 
-        <div class="chart_area border_pink_dot">
-          <!-- <img
-            class="dam_chart"
-            src="https://firstclassnigeria.com/wp-content/uploads/2021/12/Dams.jpg"
-            alt="댐 차트 (임시)"
-          /> -->
-          <svg class="dam_chart border_pink_dot" alt="댐 차트 (임시)"></svg>
-           
+        <!--  차트가 들어갈 영역 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ -->
+        <div class="chart_area container border_pink_dot">
+     
+          <div class="chart-container border_red_dot">
+            <canvas id="line1" class="border_pink_dot"></canvas>
+          </div>
         </div>
+        <!-- ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ차트가 들어갈 영역 -->
       </div>
+      <!--  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 중앙 구역-->
+      <!-- 오른쪽 구역 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
       <div class="right_page border_red_dot">
         <img
           class="icon_sun"
@@ -72,7 +86,8 @@
           <span class="current_worker_num">N 명 근무 중</span>
         </div>
       </div>
+      <!--  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 오른쪽 구역-->
     </div>
-     <script src="js/d3dj-piechart.js"></script>
-</body>
+    <script type="text/javascript" src="js/AreaChart.js"></script>
+  </body>
 </html>

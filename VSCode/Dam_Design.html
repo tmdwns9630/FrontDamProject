@@ -6,7 +6,7 @@
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
     />
-    <link href="/css/styles.css" rel="stylesheet" /
+    <!-- <link href="/css/styles.css" rel="stylesheet" /> -->
     <meta charset="UTF-8" />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"
@@ -19,10 +19,10 @@
     <!--  ■■■■■■■■■■■■■■■■■ 상단 네비게이션 바 ■■■■■■■■■■■■■■■■■■■ -->
     <header>
       <nav class="navbar">
-        <h3>Dam Dashboard</h3>
+        <h3>Dam Dashboard(VSCode)</h3>
       </nav>
     </header>
-    <div class="TotalPage">
+    <div class="TotalPage border_red_dot">
       <!-- 왼쪽 구역 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
       <div class="left_page border_purple_dot">
         <ul class="dam_list">
@@ -36,7 +36,7 @@
       <!--  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 왼쪽 구역-->
       <!-- 중앙 구역 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
       <div class="middle_page border_blue_dot">
-        <div class="sensor_view border_pink_dot">
+        <div class="sensor_view border_yellow_dot">
           <div class="sensor_block externalCard" id="water_level">
             <div class="sensor_name">수위 센서</div>
             <div class="sensor_data">12345</div>
@@ -49,8 +49,8 @@
         </div>
 
         <!--  차트가 들어갈 영역 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ -->
-        <div class="chart_area container border_pink_dot">
-          <button id="addData">First Out * Last In</button>
+        <div class="chart_area container border_blue_dot">
+          <!-- <button id="addData">First Out * Last In</button> -->
           <div class="chart-container border_red_dot">
             <canvas id="line1" class="border_pink_dot"></canvas>
           </div>
@@ -86,6 +86,6 @@
       </div>
       <!--  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 오른쪽 구역-->
     </div>
-    <script src="/js/chart3.js"></script>
+    <script src="/js/AreaChart.js"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-/*------ì˜ì—­ í™•ì¸ìš© ìƒ‰ê¹” ì ì„ ---- */
+/*------¿µ¿ª È®ÀÎ¿ë »ö±ò Á¡¼±---- */
 .border_pink_dot {
   border: dotted 2px rgb(240, 15, 228);
 }
@@ -14,11 +14,16 @@
 .border_red_dot {
   border: dotted 2px rgb(240, 15, 15);
 }
-/*-----ì˜ì—­ í™•ì¸ìš© ìƒ‰ê¹” ì ì„ -----*/
+
+.border_yellow_dot {
+  border: dotted 2px rgba(251, 255, 0, 0.863);
+}
+/*-----¿µ¿ª È®ÀÎ¿ë »ö±ò Á¡¼±-----*/
 body {
   background-color: fff;
   color: black;
   margin: 0;
+  height: 100vh;
 }
 
 header {
@@ -43,7 +48,7 @@ header {
 .TotalPage {
   display: flex;
   justify-content: space-between;
-  min-height: 500px;
+  max-height: 80vh;
 }
 
 /* ----------------Left---------------- */
@@ -78,13 +83,14 @@ header {
 .middle_page {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   width: 60%;
 }
 
 .sensor_view {
   margin-bottom: 20px;
-  height: 20%;
+
+  flex-wrap: wrap;
 }
 
 .sensor_view > .sensor_block {
@@ -93,13 +99,7 @@ header {
   text-align: center;
   margin: 10px 0px auto 10px;
   padding: 0px 5px 3px 5px;
-  width: 15%;
-}
-
-.chart_area {
-  height: 70%;
-  display: flex;
-  justify-content: center;
+  width: 40%;
 }
 
 .externalCard {
@@ -128,20 +128,17 @@ header {
   border-top: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.dam_area {
+.chart_area {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  height: fit-content;
+}
+.chart_area > .chart-container {
+  height: 100%;
 }
 
-.dam_chart {
-  /* width: 70%; */
-  display: flex;
-  justify-content: center;
-}
-.dam_chart > svg {
-  display: flex;
-  justify-content: center;
+#line1 {
+  height: max-content;
 }
 
 /* ---------------right---------------- */
@@ -162,6 +159,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .icon_worker {
@@ -172,9 +170,10 @@ header {
 .current_worker_num {
   border: solid 2px black;
   padding: 5px;
+  width: 100px;
 }
 
-/* â–  external CSS */
+/* ¡á external CSS */
 
 .btn-gradient {
   text-decoration: none;
