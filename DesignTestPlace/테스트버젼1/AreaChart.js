@@ -201,7 +201,7 @@ var chartColors = {
   orange: "rgb(255, 159, 64)",
   yellow: "rgb(255, 205, 86)",
   green: "rgb(75, 192, 192)",
-  blue: "rgb(0, 0, 150)",
+  blue: "rgb(0, 255, 235)",
   purple: "rgb(153, 102, 255)",
   grey: "rgb(201, 203, 207)",
   waterblue: "rgba(11, 189, 249, 0.65)", //차트 채우기 색은 여기다.
@@ -327,7 +327,7 @@ window.onload = function () {
   var line1DatasetSample = JSON.parse(JSON.stringify(datasetSample));
 
   /// 라벨
-  line1DatasetSample.label = "시간당 수위";
+  line1DatasetSample.label = "line1 WaterLevel Sample";
   // 채우기 옵션
   line1DatasetSample.fill = "start";
   // 채웠을 때 색깔

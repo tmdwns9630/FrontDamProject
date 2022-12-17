@@ -1,4 +1,4 @@
-/*--영역 확인용 색깔 점선----------------- */
+/*------영역 확인용 색깔 점선---- */
 .border_pink_dot {
   border: dotted 2px rgb(240, 15, 228);
 }
@@ -18,23 +18,17 @@
 .border_yellow_dot {
   border: dotted 2px rgba(251, 255, 0, 0.863);
 }
-
-.border_red_power_dot {
-  border: dotted 5px rgb(163, 1, 1);
-}
-
-/*------------------영역 확인용 색깔 점선--*/
-
+/*-----영역 확인용 색깔 점선-----*/
 body {
   background-color: fff;
   color: black;
   margin: 0;
-  height: 70vh;
-  /* min-width: 420px; */
+  height: 100vh;
+  width: 100%;
 }
 
 header {
-  margin-top: 5%;
+  margin-top: 70px;
 }
 
 .navbar {
@@ -46,42 +40,22 @@ header {
   margin: 0px;
   padding: 0px;
   width: 100%;
-  height: 10%;
-  overflow: hidden;
-
-  z-index: 2000;
 }
 
 .navbar > h3 {
-  /* padding-left: 200px; */
-  /* height: fit-content;// */
+  padding-left: 200px;
 }
 
 .TotalPage {
   display: flex;
-  justify-content: center;
-  /* max-height: 80vh; */
-  margin-left: 150px;
-
-  /* flex-wrap: wrap; */
-  /* height: 80vh; */
-  width: 80%;
+  /* justify-content: space-between; */
+  max-height: 80vh;
+  margin-left: 200px;
+  /* overflow-x: scroll; */
+  flex-wrap: wrap;
 }
 
-@media screen and (max-width: 800px) {
-  .TotalPage {
-    display: flex;
-    justify-content: center;
-    /* max-height: 80vh; */
-    margin-left: 0;
-    background-color: aquamarine;
-    /* flex-wrap: wrap; */
-    /* height: 80vh; */
-    width: 80%;
-  }
-}
-
-/* -------Left------------------------- */
+/* ----------------Left---------------- */
 /* .left_page {
   display: flex;
   justify-content: center;
@@ -108,30 +82,28 @@ header {
   background-color: rgb(75, 245, 180);
 
 } */
-/* ----------------------------Left--- */
-/* -----middle------------------------- */
+
+/* --------------middle----------------- */
 .middle_page {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  /* justify-content: space-around; */
+  width: 70%;
 }
 
-.sensor_area {
+.sensor_view {
   margin-bottom: 20px;
-  width: 100%;
+
   flex-wrap: wrap;
 }
 
-.sensor_area > .sensor_block {
+.sensor_view > .sensor_block {
   border: solid 1px;
   display: inline-block;
   text-align: center;
   margin: 10px 0px auto 10px;
   padding: 0px 5px 3px 5px;
-  width: 38%;
-  /* font-size: 30%; */
+  width: 40%;
 }
 
 .externalCard {
@@ -147,50 +119,34 @@ header {
 
   padding: 0.5rem 1rem;
 
-  border-top: 2px solid rgba(231, 197, 197, 0.125);
-}
-
-.externalCard_black {
-  word-wrap: break-word;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
-
-  --bs-bg-opacity: 1;
-  background-color: #19222a;
-  color: #fff;
-  flex: 1 1 auto;
-  padding: 1rem 1rem;
-
-  padding: 0.5rem 1rem;
-
   border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 
-.sensor_area > .sensor_block > .sensor_name {
+.sensor_view > .sensor_block > .sensor_name {
   margin-top: 0px;
   margin-bottom: 10px;
 }
 
-.sensor_area > .sensor_block > .sensor_data {
+.sensor_view > .sensor_block > .sensor_data {
   background-color: rgba(0, 0, 0, 0.03);
-  border-top: 2px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .chart_area {
-  /* display: flex;
-  justify-content: center; */
-  width: 90%;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
 }
 .chart_area > .chart-container {
-  width: 80%;
+  height: 100%;
 }
 
 #line1 {
   height: max-content;
 }
-/* ----------------------------middle--- */
-/* -----right--------------------------- */
-/* .right_page {
+
+/* ---------------right---------------- */
+.right_page {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -201,7 +157,7 @@ header {
 .icon_sun {
   width: 60%;
   max-width: 100px;
-} 
+}
 
 .current_worker {
   display: flex;
@@ -219,8 +175,8 @@ header {
   border: solid 2px black;
   padding: 5px;
   width: 100px;
-} */
-/* ----------------------------right--- */
+}
+
 /* ■ external CSS */
 
 .btn-gradient {

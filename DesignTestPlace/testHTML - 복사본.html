@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      @media (max-width: 400px) {
+        #attendance_list .hidden {
+          width: 0 !important;
+          display: none !important;
+        }
+      }
+      @media screen and (min-width: 401px) {
+        #attendance_list .hidden {
+        }
+      }
+    </style>
+
+    <div id="attendance_list">
+      <table>
+        <tr>
+          <td>하나</td>
+
+          <td class="hidden">두울</td>
+
+          <td>세엣</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

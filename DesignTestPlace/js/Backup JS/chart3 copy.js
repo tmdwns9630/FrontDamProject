@@ -194,20 +194,17 @@ var MONTHS = [
   "11h",
   "12h",
 ];
-
 // 차트에 표현할 컬러
 var chartColors = {
   red: "rgb(255, 99, 132)",
   orange: "rgb(255, 159, 64)",
   yellow: "rgb(255, 205, 86)",
   green: "rgb(75, 192, 192)",
-  blue: "rgb(0, 0, 150)",
+  blue: "rgb(0, 255, 235)",
   purple: "rgb(153, 102, 255)",
   grey: "rgb(201, 203, 207)",
   waterblue: "rgba(11, 189, 249, 0.65)", //차트 채우기 색은 여기다.
 };
-
-//ㅁㅁㅁㅁㅁㅁㅁㅁ차트에 대한 대부분의 설정ㅁㅁㅁㅁㅁ.
 var config = {
   type: "line",
   data: {
@@ -225,19 +222,8 @@ var config = {
     aspectRatio: 2,
     // 크기 조정이 발생할 때 호출
     onResize: function () {},
-
-    //차트 위의 데이터셋 뜨는거.
-    legend: {
-      display: false,
-    },
-    //선 그래프에서 있는 점을 숨길 때.
-    elements: {
-      point: {
-        radius: 0,
-      },
-    },
     title: {
-      display: false,
+      display: true,
       // 차트 제목
       text: "Chart.js Line Chart",
     },
@@ -259,38 +245,12 @@ var config = {
       },
       y: {
         display: true,
+        beginAtZero: true, //y축 0부터 시작
         scaleLabel: {
           display: true,
           labelString: "Value",
         },
       },
-      //y축 설정
-      xAxes: [
-        {
-          ticks: {
-            //fontColor: "rgba(12, 13, 13, 1)",
-            fontSize: 14,
-          },
-          gridLines: {
-            //color: "rgba(87, 152, 23, 1)",
-            lineWidth: 0,
-          },
-        },
-      ],
-      //y축 설정
-      yAxes: [
-        {
-          ticks: {
-            // beginAtZero: true; //y축 0부터 시작
-            min: 0, //범위 설정
-            max: 30,
-            fontSize: 14,
-          },
-          gridLines: {
-            lineWidth: 0,
-          },
-        },
-      ],
     },
   },
 };
@@ -327,7 +287,7 @@ window.onload = function () {
   var line1DatasetSample = JSON.parse(JSON.stringify(datasetSample));
 
   /// 라벨
-  line1DatasetSample.label = "시간당 수위";
+  line1DatasetSample.label = "line1 WaterLevel Sample";
   // 채우기 옵션
   line1DatasetSample.fill = "start";
   // 채웠을 때 색깔
@@ -337,18 +297,17 @@ window.onload = function () {
   // 데이터 채우기
   line1Config.data.datasets.push(line1DatasetSample);
   // 타이틀값
-  line1Config.options.title.text = "Area Chart Title";
+  line1Config.options.title.text = "line1/Fill Option = Start";
   // 차트 생성하기
   window.line1 = new Chart(line1, line1Config);
   //  ======================================================== line1
 };
-
-// x 레이블 가장 끝에 데이터 및 라벨 추가 함수
-//설명 : range를 현재 데이터셋 샘플 길이로 잡고
 var i = 0;
 var range = datasetSample.data.length;
-const addData_lastLabel = () => {
+// 데이터 추가 버튼
+document.getElementById("addData").addEventListener("click", function () {
   var month;
+
   month = MONTHS[range + i];
 
   Chart.instances[0].config.data.labels.push(month);
@@ -369,29 +328,22 @@ const addData_lastLabel = () => {
   console.log(MONTHS.length);
   console.log(range);
   console.log(i);
-};
-
-// x 레이블 첫번째 데이터 및 라벨 삭제 함수
-//설명 : range를 현재 데이터셋 샘플 길이로 잡고
-const deleteData_firstLabel = () => {
-  // 데이터 값 세팅
-  Chart.instances[0].config.data.labels.shift();
-  Chart.instances[0].config.data.datasets.forEach(function (dataset) {
-    // 첫번쨰 배열값 제거
-    dataset.data.shift();
-  });
-  // 데이터 업데이트
-  Chart.instances[0].update();
-};
-/*
-// 버튼으로 데이터 변환
-document.getElementById("addData").addEventListener("click", function () {
-  addData_lastLabel();
-  deleteData_firstLabel();
 });
-*/
-//n초마다 데이터 변환.
-setInterval(() => {
-  addData_lastLabel();
-  deleteData_firstLabel();
-}, 2000);
+
+// 첫번째 값 제거 버튼
+document.getElementById("addData").addEventListener("click", function () {
+  // 모든 차트 순회하기 위한 KEY 값 배열
+  var keys = Object.keys(Chart.instances);
+  // 차트 순회하기
+  keys.forEach((elem) => {
+    // 데이터 값 세팅
+    //console.log(Chart.instances[elem].config.data);
+    Chart.instances[elem].config.data.labels.shift();
+    Chart.instances[elem].config.data.datasets.forEach(function (dataset) {
+      // 첫번쨰 배열값 제거
+      dataset.data.shift();
+    });
+    // 데이터 업데이트
+    Chart.instances[elem].update();
+  });
+});

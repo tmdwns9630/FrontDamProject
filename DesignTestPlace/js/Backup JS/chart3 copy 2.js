@@ -1,3 +1,6 @@
+// 버튼으로 데이터셋 인아웃이 동시에 됨
+// 타임 인터벌로 바꾸기 전.
+
 /*
  * utils.js
  * charts.js 만들기 위한 utils.js 부분
@@ -201,7 +204,7 @@ var chartColors = {
   orange: "rgb(255, 159, 64)",
   yellow: "rgb(255, 205, 86)",
   green: "rgb(75, 192, 192)",
-  blue: "rgb(0, 0, 150)",
+  blue: "rgb(0, 255, 235)",
   purple: "rgb(153, 102, 255)",
   grey: "rgb(201, 203, 207)",
   waterblue: "rgba(11, 189, 249, 0.65)", //차트 채우기 색은 여기다.
@@ -237,7 +240,7 @@ var config = {
       },
     },
     title: {
-      display: false,
+      display: true,
       // 차트 제목
       text: "Chart.js Line Chart",
     },
@@ -327,7 +330,7 @@ window.onload = function () {
   var line1DatasetSample = JSON.parse(JSON.stringify(datasetSample));
 
   /// 라벨
-  line1DatasetSample.label = "시간당 수위";
+  line1DatasetSample.label = "line1 WaterLevel Sample";
   // 채우기 옵션
   line1DatasetSample.fill = "start";
   // 채웠을 때 색깔
@@ -337,18 +340,21 @@ window.onload = function () {
   // 데이터 채우기
   line1Config.data.datasets.push(line1DatasetSample);
   // 타이틀값
-  line1Config.options.title.text = "Area Chart Title";
+  line1Config.options.title.text = "line1/Fill Option = Start";
   // 차트 생성하기
   window.line1 = new Chart(line1, line1Config);
   //  ======================================================== line1
 };
 
-// x 레이블 가장 끝에 데이터 및 라벨 추가 함수
+// 데이터 추가 버튼
 //설명 : range를 현재 데이터셋 샘플 길이로 잡고
+
 var i = 0;
 var range = datasetSample.data.length;
-const addData_lastLabel = () => {
+
+document.getElementById("addData").addEventListener("click", function () {
   var month;
+
   month = MONTHS[range + i];
 
   Chart.instances[0].config.data.labels.push(month);
@@ -369,11 +375,11 @@ const addData_lastLabel = () => {
   console.log(MONTHS.length);
   console.log(range);
   console.log(i);
-};
+});
 
-// x 레이블 첫번째 데이터 및 라벨 삭제 함수
-//설명 : range를 현재 데이터셋 샘플 길이로 잡고
-const deleteData_firstLabel = () => {
+// 첫번째 값 제거 버튼
+// 을 위의 버튼이랑 같은 버튼에 넣음.
+document.getElementById("addData").addEventListener("click", function () {
   // 데이터 값 세팅
   Chart.instances[0].config.data.labels.shift();
   Chart.instances[0].config.data.datasets.forEach(function (dataset) {
@@ -382,16 +388,4 @@ const deleteData_firstLabel = () => {
   });
   // 데이터 업데이트
   Chart.instances[0].update();
-};
-/*
-// 버튼으로 데이터 변환
-document.getElementById("addData").addEventListener("click", function () {
-  addData_lastLabel();
-  deleteData_firstLabel();
 });
-*/
-//n초마다 데이터 변환.
-setInterval(() => {
-  addData_lastLabel();
-  deleteData_firstLabel();
-}, 2000);
