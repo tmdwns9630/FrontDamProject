@@ -25,6 +25,10 @@
 
 /*------------------영역 확인용 색깔 점선--*/
 
+/* 토글버튼------------------- */
+
+/* ------------------토글버튼 */
+
 body {
   background-color: fff;
   color: black;
@@ -34,7 +38,7 @@ body {
 }
 
 header {
-  margin-top: 5%;
+  margin-top: 8%;
 }
 
 .navbar {
@@ -52,9 +56,19 @@ header {
   z-index: 2000;
 }
 
+.navbar > button,
 .navbar > h3 {
-  /* padding-left: 200px; */
-  /* height: fit-content;// */
+  display: inline-block;
+}
+.sidebarBtn {
+  margin: 0 20px 0 10px;
+  display: none;
+  border: #fff solid 1px;
+  border-radius: 30%;
+  background-color: #19222a;
+}
+.sidebarBtn > svg {
+  pointer-events: none;
 }
 
 .TotalPage {
@@ -78,6 +92,10 @@ header {
     /* flex-wrap: wrap; */
     /* height: 80vh; */
     width: 80%;
+  }
+
+  .navbar > button {
+    display: inline-block;
   }
 }
 

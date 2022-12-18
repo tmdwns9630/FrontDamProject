@@ -364,11 +364,11 @@ const addData_lastLabel = () => {
     i = 0;
   } else i++;
 
-  console.log(`ㅁㅁㅁㅁㅁㅁㅁ먼스 : ${month}`);
-  console.log("MONTHS.length, range, i");
-  console.log(MONTHS.length);
-  console.log(range);
-  console.log(i);
+  // console.log(`ㅁㅁㅁㅁㅁㅁㅁ먼스 : ${month}`);
+  // console.log("MONTHS.length, range, i");
+  // console.log(MONTHS.length);
+  // console.log(range);
+  // console.log(i);
 };
 
 // x 레이블 첫번째 데이터 및 라벨 삭제 함수
