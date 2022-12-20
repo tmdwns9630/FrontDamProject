@@ -1,29 +1,13 @@
-//1 랜덤 데이터를 1초마다 추가하고 첫번째 레이블 삭제, 마지막 레이블을 추가함.
 /*
-2 jsp에 넣기 전, 로그 데이터를 내부 변수로 넣어서 출력
-ㄴ이 시점에서 데이터 추가 삭제는 고려 안함
-
+Chart.js 라이브러리로 만든 에리어 차트.
+작업자 : 최승준
 */
 /*
  * utils.js
  * charts.js 만들기 위한 utils.js 부분
  * 공식 사이트에서 제공하는 utils.js
  */
-
-const wal = [
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:43:19" },
-  { damId: "3750", waterLevel: 448, mesurDt: "3750.2022/12/18 16:43:24" },
-  { damId: "3750", waterLevel: 456, mesurDt: "3750.2022/12/18 16:43:29" },
-  { damId: "3750", waterLevel: 456, mesurDt: "3750.2022/12/18 16:43:34" },
-  { damId: "3750", waterLevel: 453, mesurDt: "3750.2022/12/18 16:43:39" },
-  { damId: "3750", waterLevel: 448, mesurDt: "3750.2022/12/18 16:43:44" },
-  { damId: "3750", waterLevel: 448, mesurDt: "3750.2022/12/18 16:43:49" },
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:43:54" },
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:43:59" },
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:44:05" },
-];
-
-("use strict");
+"use strict";
 
 //색깔
 window.chartColors = {
@@ -224,7 +208,7 @@ var chartColors = {
   blue: "rgb(0, 0, 150)",
   purple: "rgb(153, 102, 255)",
   grey: "rgb(201, 203, 207)",
-  waterblue: "rgba(11, 189, 249, 0.65)", //차트 채우기 색은 여기다.
+  waterblue: "rgba(11, 189, 249, 0.8)", //차트 채우기 색은 여기다.
 };
 
 //ㅁㅁㅁㅁㅁㅁㅁㅁ차트에 대한 대부분의 설정ㅁㅁㅁㅁㅁ.
@@ -302,8 +286,8 @@ var config = {
         {
           ticks: {
             // beginAtZero: true; //y축 0부터 시작
-            min: 400, //범위 설정
-            max: 500,
+            min: 0, //범위 설정
+            max: 30,
             fontSize: 14,
           },
           gridLines: {
@@ -314,21 +298,12 @@ var config = {
     },
   },
 };
-//Here - 여기가 랜덤값 만들어주는 곳이고
-// 400 ~ 500 사이 랜덤값 생성
+
+// 10 ~ 20 사이 랜덤값 생성
 var randomScalingFactor = function () {
-  return Math.round(Samples.utils.rand(400, 500));
+  return Math.round(Samples.utils.rand(10, 20));
 };
-
-//Here - 여기서 json데이터에서 수위 정보만 담은 배열을 따로 만듬.
-var walArray = [];
-wal.forEach((ele, idx) => {
-  walArray.push(ele.waterLevel);
-});
-console.log(walArray);
-
 // 새로운 데이터 만들기
-//Here - data에 배열을 넣음.
 var datasetSample = {
   label: "label",
   backgroundColor: window.chartColors.red,
@@ -343,7 +318,6 @@ var datasetSample = {
     randomScalingFactor(),
     randomScalingFactor(),
   ],
-  // data: walArray,
 };
 
 // 윈도우가 로드가 될때
@@ -384,7 +358,6 @@ const addData_lastLabel = () => {
   Chart.instances[0].config.data.labels.push(month);
   Chart.instances[0].config.data.datasets.forEach(function (dataset) {
     dataset.data.push(randomScalingFactor());
-    //Here-여기서 랜덤 데이터가 계속 추가된다.
   });
   Chart.instances[0].update();
   //console.log(Chart.instances[elem]);
@@ -395,12 +368,6 @@ const addData_lastLabel = () => {
     i = 0;
   } else i++;
 
-  // console.log(`ㅁㅁㅁㅁㅁㅁㅁ먼스 : ${month}`);
-  // console.log("MONTHS.length, range, i");
-  // console.log(MONTHS.length);
-  // console.log(range);
-  // console.log(i);
-  console.log(Chart.instances[0].config.data.datasets[0].data);
 };
 
 // x 레이블 첫번째 데이터 및 라벨 삭제 함수
@@ -415,14 +382,16 @@ const deleteData_firstLabel = () => {
   // 데이터 업데이트
   Chart.instances[0].update();
 };
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   addData_lastLabel();
-//   deleteData_firstLabel();
-// });
-
+/*
+// 버튼으로 데이터 변환
+document.getElementById("addData").addEventListener("click", function () {
+  addData_lastLabel();
+  deleteData_firstLabel();
+});
+*/
 //n초마다 데이터 변환.
 setInterval(() => {
   addData_lastLabel();
   deleteData_firstLabel();
+  console.log("이 파일이 맞다!");
 }, 2000);

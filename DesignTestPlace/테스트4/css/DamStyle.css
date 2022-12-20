@@ -22,9 +22,6 @@
 .border_red_power_dot {
   border: dotted 5px rgb(163, 1, 1);
 }
-.border_white_solid {
-  border: solid 2px rgb(255, 255, 255);
-}
 
 /*------------------영역 확인용 색깔 점선--*/
 
@@ -33,7 +30,7 @@
 /* ------------------토글버튼 */
 
 body {
-  background-color: #eeeeee;
+  background-color: fff;
   color: black;
   margin: 0;
   height: 70vh;
@@ -41,7 +38,7 @@ body {
 }
 
 header {
-  margin-top: 10%;
+  margin-top: 8%;
 }
 
 .navbar {
@@ -102,6 +99,34 @@ header {
   }
 }
 
+/* -------Left------------------------- */
+/* .left_page {
+  display: flex;
+  justify-content: center;
+  width: 20%;
+}
+
+.dam_list {
+  border: solid 2px rgb(8, 243, 0);
+  margin: 0px;
+  padding-left: 0px;
+  width: 80%;
+}
+
+.dam_list > li {
+  list-style: none;
+  border: solid 1px;
+  min-width: 50px;
+  width: 80%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto auto auto;
+  background-color: rgb(75, 245, 180);
+
+} */
+/* ----------------------------Left--- */
 /* -----middle------------------------- */
 .middle_page {
   display: flex;
@@ -112,46 +137,21 @@ header {
 }
 
 .sensor_area {
-  margin-top: 50px;
-  width: 80%;
-  flex-wrap: wrap;
-  border-bottom: 1px dotted;
-}
-
-/* 표에 들어갈 속성 */
-.sensor_table {
-  text-align: center;
+  margin-bottom: 20px;
   width: 100%;
-  border-top: 5px solid #dcdcdc;
-  border-collapse: collapse;
-}
-/* TableHead */
-.sensor_th {
-  border-bottom: 1px solid #dfdfdf;
-  border-left: 1px solid #dfdfdf;
-  padding: 10px;
-  background-color: #f5f5f5;
-}
-
-/* TableData */
-.sensor_td {
-  border-bottom: 1px solid #dfdfdf;
-  border-left: 1px solid #dfdfdf;
-  padding: 10px;
-  background-color: #ffffff;
+  flex-wrap: wrap;
 }
 
 .sensor_area > .sensor_block {
   border: solid 1px;
   display: inline-block;
   text-align: center;
-  margin: 10px 0px auto 30px;
+  margin: 10px 0px auto 10px;
   padding: 0px 5px 3px 5px;
   width: 38%;
   /* font-size: 30%; */
 }
 
-/* ----------Data Card---------- */
 .externalCard {
   word-wrap: break-word;
   border: 1px solid rgba(0, 0, 0, 0.125);
@@ -193,24 +193,101 @@ header {
   background-color: rgba(0, 0, 0, 0.03);
   border-top: 2px solid rgba(255, 255, 255, 0.5);
 }
-/* ----------Chart---------- */
+
 .chart_area {
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
   width: 90%;
 }
-.chart-container {
-  display: flex;
-  justify-content: center;
-}
 .chart_area > .chart-container {
-  /* width: 100%; */
+  width: 80%;
 }
 
-canvas {
-  background-color: white;
-  max-width: 80%;
+#line1 {
+  height: max-content;
 }
 /* ----------------------------middle--- */
+/* -----right--------------------------- */
+/* .right_page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 20%;
+}
 
+.icon_sun {
+  width: 60%;
+  max-width: 100px;
+} 
+
+.current_worker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.icon_worker {
+  width: 50%;
+  margin-right: 10px;
+}
+
+.current_worker_num {
+  border: solid 2px black;
+  padding: 5px;
+  width: 100px;
+} */
+/* ----------------------------right--- */
 /* ■ external CSS */
+
+.btn-gradient {
+  text-decoration: none;
+  color: white;
+  padding: 10px 30px;
+  display: inline-block;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  border-bottom: 4px solid rgba(0, 0, 0, 0.21);
+  border-radius: 4px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+}
+.btn-gradient.large {
+  padding: 15px 45px;
+  font-size: 22px;
+}
+.btn-gradient.blue {
+  background: rgba(102, 152, 203, 1);
+  background: -moz-linear-gradient(
+    top,
+    rgba(102, 152, 203, 1) 0%,
+    rgba(92, 138, 184, 1) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    left bottom,
+    color-stop(0%, rgba(102, 152, 203, 1)),
+    color-stop(100%, rgba(92, 138, 184, 1))
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(102, 152, 203, 1) 0%,
+    rgba(92, 138, 184, 1) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgba(102, 152, 203, 1) 0%,
+    rgba(92, 138, 184, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    top,
+    rgba(102, 152, 203, 1) 0%,
+    rgba(92, 138, 184, 1) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(102, 152, 203, 1) 0%,
+    rgba(92, 138, 184, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6698cb', endColorstr='#5c8ab8', GradientType=0 );
+}

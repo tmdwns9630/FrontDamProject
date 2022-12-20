@@ -1,31 +1,10 @@
-//1 랜덤 데이터를 1초마다 추가하고 첫번째 레이블 삭제, 마지막 레이블을 추가함.
-/*
-2 jsp에 넣기 전, 로그 데이터를 내부 변수로 넣어서 출력
-ㄴ이 시점에서 데이터 추가 삭제는 고려 안함
-
-*/
 /*
  * utils.js
  * charts.js 만들기 위한 utils.js 부분
  * 공식 사이트에서 제공하는 utils.js
  */
+"use strict";
 
-const wal = [
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:43:19" },
-  { damId: "3750", waterLevel: 448, mesurDt: "3750.2022/12/18 16:43:24" },
-  { damId: "3750", waterLevel: 456, mesurDt: "3750.2022/12/18 16:43:29" },
-  { damId: "3750", waterLevel: 456, mesurDt: "3750.2022/12/18 16:43:34" },
-  { damId: "3750", waterLevel: 453, mesurDt: "3750.2022/12/18 16:43:39" },
-  { damId: "3750", waterLevel: 448, mesurDt: "3750.2022/12/18 16:43:44" },
-  { damId: "3750", waterLevel: 448, mesurDt: "3750.2022/12/18 16:43:49" },
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:43:54" },
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:43:59" },
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:44:05" },
-];
-
-("use strict");
-
-//색깔
 window.chartColors = {
   red: "rgb(255, 99, 132)",
   orange: "rgb(255, 159, 64)",
@@ -37,19 +16,18 @@ window.chartColors = {
 };
 (function (global) {
   var MONTHS = [
-    "0h",
-    "1h",
-    "2h",
-    "3h",
-    "4h",
-    "5h",
-    "6h",
-    "7h",
-    "8h",
-    "9h",
-    "10h",
-    "11h",
-    "12h",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
   var COLORS = [
@@ -200,38 +178,33 @@ window.chartColors = {
 
 // 차트에 표현할 x 축의 값
 var MONTHS = [
-  "0h",
-  "1h",
-  "2h",
-  "3h",
-  "4h",
-  "5h",
-  "6h",
-  "7h",
-  "8h",
-  "9h",
-  "10h",
-  "11h",
-  "12h",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
-
 // 차트에 표현할 컬러
 var chartColors = {
   red: "rgb(255, 99, 132)",
   orange: "rgb(255, 159, 64)",
   yellow: "rgb(255, 205, 86)",
   green: "rgb(75, 192, 192)",
-  blue: "rgb(0, 0, 150)",
+  blue: "rgb(54, 162, 235)",
   purple: "rgb(153, 102, 255)",
   grey: "rgb(201, 203, 207)",
-  waterblue: "rgba(11, 189, 249, 0.65)", //차트 채우기 색은 여기다.
 };
-
-//ㅁㅁㅁㅁㅁㅁㅁㅁ차트에 대한 대부분의 설정ㅁㅁㅁㅁㅁ.
 var config = {
   type: "line",
   data: {
-    labels: ["0h", "1h", "2h", "3h", "4h", "5h", "6h", "7h"],
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [],
   },
   options: {
@@ -245,19 +218,8 @@ var config = {
     aspectRatio: 2,
     // 크기 조정이 발생할 때 호출
     onResize: function () {},
-
-    //차트 위의 데이터셋 뜨는거.
-    legend: {
-      display: false,
-    },
-    //선 그래프에서 있는 점을 숨길 때.
-    elements: {
-      point: {
-        radius: 0,
-      },
-    },
     title: {
-      display: false,
+      display: true,
       // 차트 제목
       text: "Chart.js Line Chart",
     },
@@ -284,51 +246,15 @@ var config = {
           labelString: "Value",
         },
       },
-      //y축 설정
-      xAxes: [
-        {
-          ticks: {
-            //fontColor: "rgba(12, 13, 13, 1)",
-            fontSize: 14,
-          },
-          gridLines: {
-            //color: "rgba(87, 152, 23, 1)",
-            lineWidth: 0,
-          },
-        },
-      ],
-      //y축 설정
-      yAxes: [
-        {
-          ticks: {
-            // beginAtZero: true; //y축 0부터 시작
-            min: 400, //범위 설정
-            max: 500,
-            fontSize: 14,
-          },
-          gridLines: {
-            lineWidth: 0,
-          },
-        },
-      ],
     },
   },
 };
-//Here - 여기가 랜덤값 만들어주는 곳이고
-// 400 ~ 500 사이 랜덤값 생성
+
+// -100 ~ 100 사이 랜덤값 생성
 var randomScalingFactor = function () {
-  return Math.round(Samples.utils.rand(400, 500));
+  return Math.round(Samples.utils.rand(-100, 100));
 };
-
-//Here - 여기서 json데이터에서 수위 정보만 담은 배열을 따로 만듬.
-var walArray = [];
-wal.forEach((ele, idx) => {
-  walArray.push(ele.waterLevel);
-});
-console.log(walArray);
-
 // 새로운 데이터 만들기
-//Here - data에 배열을 넣음.
 var datasetSample = {
   label: "label",
   backgroundColor: window.chartColors.red,
@@ -341,88 +267,138 @@ var datasetSample = {
     randomScalingFactor(),
     randomScalingFactor(),
     randomScalingFactor(),
-    randomScalingFactor(),
   ],
-  // data: walArray,
 };
 
 // 윈도우가 로드가 될때
 window.onload = function () {
   // line1 ========================================================
   // 생성할 canvas 요소
-  var line1 = document.getElementById("line1").getContext("2d");
+  // var line1 = document.getElementById('line1').getContext('2d');
   // config 파일 복사
   var line1Config = JSON.parse(JSON.stringify(config));
+
   // 데이터셋 생성하기
   var line1DatasetSample = JSON.parse(JSON.stringify(datasetSample));
-
   /// 라벨
-  line1DatasetSample.label = "시간당 수위";
+  line1DatasetSample.label = "line1 Dataset Sample";
   // 채우기 옵션
-  line1DatasetSample.fill = "start";
+  line1DatasetSample.fill = false;
   // 채웠을 때 색깔
-  line1DatasetSample.backgroundColor = window.chartColors.waterblue;
+  line1DatasetSample.backgroundColor = window.chartColors.red;
   // 선 색깔
-  line1DatasetSample.borderColor = window.chartColors.blue;
+  line1DatasetSample.borderColor = window.chartColors.yellow;
   // 데이터 채우기
   line1Config.data.datasets.push(line1DatasetSample);
   // 타이틀값
-  line1Config.options.title.text = "Area Chart Title";
+  line1Config.options.title.text = "line1/Fill Option = false";
   // 차트 생성하기
   window.line1 = new Chart(line1, line1Config);
   //  ======================================================== line1
+
+  // line2 ========================================================
+  var line2 = document.getElementById("line2").getContext("2d");
+  var line2Config = JSON.parse(JSON.stringify(config));
+
+  var line2DatasetSample = JSON.parse(JSON.stringify(datasetSample));
+  line2DatasetSample.label = "line2 Dataset Sample";
+  line2DatasetSample.fill = "origin";
+  line2DatasetSample.backgroundColor = window.chartColors.red;
+  line2DatasetSample.borderColor = window.chartColors.yellow;
+
+  line2Config.data.datasets.push(line2DatasetSample);
+  line2Config.options.title.text = "line2/Fill Option = origin";
+  window.line2 = new Chart(line2, line2Config);
+  //  ======================================================== line2
+
+  // // line3 ========================================================
+  var line3 = document.getElementById("line3").getContext("2d");
+  var line3Config = JSON.parse(JSON.stringify(config));
+  var line3DatasetSample = JSON.parse(JSON.stringify(datasetSample));
+
+  line3DatasetSample.label = "line3 Dataset Sample";
+  line3DatasetSample.fill = "start";
+  line3Config.data.datasets.push(line3DatasetSample);
+  line3Config.options.title.text = "line3/Fill Option = start";
+  line3DatasetSample.backgroundColor = window.chartColors.red;
+  line3DatasetSample.borderColor = window.chartColors.yellow;
+
+  window.line3 = new Chart(line3, line3Config);
+  // //  ======================================================== line3
+
+  // // line4 ========================================================
+  var line4 = document.getElementById("line4").getContext("2d");
+  var line4Config = JSON.parse(JSON.stringify(config));
+
+  var line4DatasetSample = JSON.parse(JSON.stringify(datasetSample));
+  line4DatasetSample.label = "line4 Dataset Sample";
+  line4DatasetSample.fill = "end";
+  line4DatasetSample.backgroundColor = window.chartColors.red;
+  line4DatasetSample.borderColor = window.chartColors.yellow;
+
+  line4Config.data.datasets.push(line4DatasetSample);
+  line4Config.options.title.text = "line4/Fill Option = end";
+  window.line4 = new Chart(line4, line4Config);
+  //  ======================================================== line4
 };
 
-// x 레이블 가장 끝에 데이터 및 라벨 추가 함수
-//설명 : range를 현재 데이터셋 샘플 길이로 잡고
-var i = 0;
-var range = datasetSample.data.length;
-const addData_lastLabel = () => {
-  var month;
-  month = MONTHS[range + i];
+var colorNames = Object.keys(window.chartColors);
+// 데이터셋 추가 버튼
+document.getElementById("addDataset").addEventListener("click", function () {
+  var colorNames = Object.keys(window.chartColors);
+  // 새로운 데이터셋 세팅
+  var newData = {
+    // 라벨
+    label: "Dataset",
+    // 꼭지점
+    backgroundColor: "",
+    // 라인색
+    borderColor: "",
+    data: [],
+  };
 
-  Chart.instances[0].config.data.labels.push(month);
-  Chart.instances[0].config.data.datasets.forEach(function (dataset) {
-    dataset.data.push(randomScalingFactor());
-    //Here-여기서 랜덤 데이터가 계속 추가된다.
+  var fill = ["end", "start", "origin", false];
+
+  for (let index = 0; index < 4; index++) {
+    // 데이터 세팅
+    var settingData = JSON.parse(JSON.stringify(newData));
+    // 배경
+    settingData.backgroundColor = chartColors[colorNames[index + 1]];
+    // 선색
+    settingData.borderColor = chartColors[colorNames[index + 2]];
+    // 라벨
+    settingData.label = "new Data line" + (index + 1) + "/ Fill=" + fill[index];
+    // 채우기 옵션
+    settingData.fill = fill[index];
+    // 데이터 채우기
+    for (
+      var i = 0;
+      i < Chart.instances[0].config.data.datasets[0].data.length;
+      i++
+    ) {
+      settingData.data.push(randomScalingFactor());
+    }
+    // 데이터 반영
+    Chart.instances[index].data.datasets.push(settingData);
+    // 라인 차트 업데이트
+    Chart.instances[index].update();
+  }
+});
+
+// 데이터 추가 버튼
+document.getElementById("addData").addEventListener("click", function () {
+  var keys = Object.keys(Chart.instances);
+  keys.forEach((elem) => {
+    var month =
+      MONTHS[Chart.instances[elem].config.data.labels.length % MONTHS.length];
+    console.log(elem);
+    console.log(month);
+    console.log(Chart.instances[elem]);
+    Chart.instances[elem].config.data.labels.push(month);
+    Chart.instances[elem].config.data.datasets.forEach(function (dataset) {
+      dataset.data.push(randomScalingFactor());
+    });
+    Chart.instances[elem].update();
+    console.log(Chart.instances[elem]);
   });
-  Chart.instances[0].update();
-  //console.log(Chart.instances[elem]);
-
-  if (range + i >= MONTHS.length - 1) {
-    console.log("##############################if문 작동");
-    range = 0;
-    i = 0;
-  } else i++;
-
-  // console.log(`ㅁㅁㅁㅁㅁㅁㅁ먼스 : ${month}`);
-  // console.log("MONTHS.length, range, i");
-  // console.log(MONTHS.length);
-  // console.log(range);
-  // console.log(i);
-  console.log(Chart.instances[0].config.data.datasets[0].data);
-};
-
-// x 레이블 첫번째 데이터 및 라벨 삭제 함수
-//설명 : range를 현재 데이터셋 샘플 길이로 잡고
-const deleteData_firstLabel = () => {
-  // 데이터 값 세팅
-  Chart.instances[0].config.data.labels.shift();
-  Chart.instances[0].config.data.datasets.forEach(function (dataset) {
-    // 첫번쨰 배열값 제거
-    dataset.data.shift();
-  });
-  // 데이터 업데이트
-  Chart.instances[0].update();
-};
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   addData_lastLabel();
-//   deleteData_firstLabel();
-// });
-
-//n초마다 데이터 변환.
-setInterval(() => {
-  addData_lastLabel();
-  deleteData_firstLabel();
-}, 2000);
+});

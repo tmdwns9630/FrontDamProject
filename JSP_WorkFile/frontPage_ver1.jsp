@@ -1,38 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="/css/DamStyle.css" />
+    <link rel="stylesheet" type="text/css" href="css/DamStyle.css?after" />
+    <link rel="stylesheet" type="text/css" href="css/siderbar.css?after" />
+
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
     />
-    <link href="css/siderbar.css" rel="stylesheet" />
-    <!-- <link href="/css/styles.css" rel="stylesheet" /> -->
     <meta charset="UTF-8" />
     <script
+      type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"
       integrity="sha512-QEiC894KVkN9Tsoi6+mKf8HaCLJvyA6QIRzY5KrfINXYuP9NxdIkRQhGq3BZi0J4I7V5SidGM3XUQ5wFiMDuWg=="
       crossorigin="anonymous"
     ></script>
-    <title>Dam Project</title>
+   <title>Dam Project</title>
     <header>
       <nav class="navbar">
-        <button class="sidebarBtn">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="white"
-            class="w-6 h-6"
-            style="width: 30px"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
-        <h3>Dam Dashboard (VSCode)</h3>
+        <h3>Dam Dashboard (JSP)</h3>
       </nav>
     </header>
   </head>
@@ -45,8 +33,8 @@
         alt="icon_sun"
         style="width: 60%; max-width: 100px"
       />
-      <ul id="DamList">
-        <!-- <li>
+      <ul>
+        <li>
           <a href="#">
             <i class="fa fa-laptop fa-2x"></i>
             <span class="nav-text" id="btn1"> Dam 1 </span>
@@ -75,32 +63,29 @@
             <i class="fa fa-laptop fa-2x"></i>
             <span class="nav-text"> Dam 5 </span>
           </a>
-        </li> -->
+        </li>
       </ul>
     </nav>
     <!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■좌측 사이드바 ■■■ -->
     <!--  원래 좌 중 우로 구역을 나눴으나 좌, 우를 지움 -->
     <div class="TotalPage border_red_power_dot">
-      <!-- 왼쪽 구역 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
-
-      <!--  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 왼쪽 구역-->
       <!-- 중앙 구역 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
       <div class="middle_page border_blue_dot">
         <div class="sensor_area border_yellow_dot">
-          <div class="sensor_block externalCard_black">
+          <div class="sensor_block externalCard_black" id="water_level">
             <div class="sensor_name">댐 이름</div>
             <div class="sensor_data" id="DAM_NAME">댐 n</div>
           </div>
-          <div class="sensor_block externalCard_black">
+          <div class="sensor_block externalCard_black" id="water_level">
             <div class="sensor_name">현재 근무자</div>
             <div class="sensor_data" id="WORK_NMPR">1972 명</div>
           </div>
-          <div class="sensor_block externalCard">
+          <div class="sensor_block externalCard" id="water_level">
             <div class="sensor_name">수위 센서</div>
             <div class="sensor_data" id="WATER_LEVEL">12345</div>
           </div>
 
-          <div class="sensor_block externalCard">
+          <div class="sensor_block externalCard" id="light_level">
             <div class="sensor_name">조도 센서</div>
             <div class="sensor_data" id="LIGHT">67890</div>
           </div>
@@ -116,9 +101,8 @@
         <!-- ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ차트가 들어갈 영역 -->
       </div>
       <!--  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 중앙 구역-->
+      
     </div>
-    <!-- ############## 자바스크립트 ################## -->
-    <script src="/js/AreaChart.js"></script>
-    <script src="/js/upload.js"></script>
+    <script type="text/javascript" src="js/AreaChart.js"></script>
   </body>
 </html>

@@ -2,25 +2,60 @@
 /*
 2 jsp에 넣기 전, 로그 데이터를 내부 변수로 넣어서 출력
 ㄴ이 시점에서 데이터 추가 삭제는 고려 안함
-
-*/
+3. 막대 그래프를 추가하기로 함.
 /*
  * utils.js
  * charts.js 만들기 위한 utils.js 부분
  * 공식 사이트에서 제공하는 utils.js
  */
 
-const wal = [
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:43:19" },
-  { damId: "3750", waterLevel: 448, mesurDt: "3750.2022/12/18 16:43:24" },
-  { damId: "3750", waterLevel: 456, mesurDt: "3750.2022/12/18 16:43:29" },
-  { damId: "3750", waterLevel: 456, mesurDt: "3750.2022/12/18 16:43:34" },
-  { damId: "3750", waterLevel: 453, mesurDt: "3750.2022/12/18 16:43:39" },
-  { damId: "3750", waterLevel: 448, mesurDt: "3750.2022/12/18 16:43:44" },
-  { damId: "3750", waterLevel: 448, mesurDt: "3750.2022/12/18 16:43:49" },
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:43:54" },
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:43:59" },
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:44:05" },
+//테스트용 댐 json 데이터, jsp에 넣진 말 것.
+const damObject = [
+  {
+    damId: "1001",
+    damName: "DAM1001",
+    waterLevel: "391",
+    light: "80",
+    workNmpr: "5",
+    lastMesur: "2022/12/16 17:44:31",
+    updtDt: "2022-12-16 17:44:38",
+  },
+  {
+    damId: "1002",
+    damName: "DAM1002",
+    waterLevel: "860",
+    light: "100",
+    workNmpr: "4",
+    lastMesur: "2022/12/16 15:12:56",
+    updtDt: "2022-12-16 15:13:09",
+  },
+  {
+    damId: "1003",
+    damName: "DAM1003",
+    waterLevel: "760",
+    light: "120",
+    workNmpr: "27",
+    lastMesur: "2022/12/16 15:13:20",
+    updtDt: "2022-12-16 15:13:33",
+  },
+  {
+    damId: "2182",
+    damName: "DAM2182",
+    waterLevel: "430",
+    light: "42",
+    workNmpr: "20",
+    lastMesur: "2022/12/18 17:02:02",
+    updtDt: "2022-12-18 17:02:12",
+  },
+  {
+    damId: "3750",
+    damName: "DAM3750",
+    waterLevel: "493",
+    light: "26",
+    workNmpr: "0",
+    lastMesur: "2022/12/18 17:02:03",
+    updtDt: "2022-12-18 17:02:12",
+  },
 ];
 
 ("use strict");
@@ -199,21 +234,9 @@ window.chartColors = {
 // ------------------------------------------------------------
 
 // 차트에 표현할 x 축의 값
-var MONTHS = [
-  "0h",
-  "1h",
-  "2h",
-  "3h",
-  "4h",
-  "5h",
-  "6h",
-  "7h",
-  "8h",
-  "9h",
-  "10h",
-  "11h",
-  "12h",
-];
+var MONTHS = damObject.map((ele) => {
+  return ele.damName;
+});
 
 // 차트에 표현할 컬러
 var chartColors = {
@@ -225,13 +248,14 @@ var chartColors = {
   purple: "rgb(153, 102, 255)",
   grey: "rgb(201, 203, 207)",
   waterblue: "rgba(11, 189, 249, 0.65)", //차트 채우기 색은 여기다.
+  sunyellow: "rgba(255, 187, 61, 0.89)",
 };
 
 //ㅁㅁㅁㅁㅁㅁㅁㅁ차트에 대한 대부분의 설정ㅁㅁㅁㅁㅁ.
 var config = {
-  type: "line",
+  type: "bar",
   data: {
-    labels: ["0h", "1h", "2h", "3h", "4h", "5h", "6h", "7h"],
+    labels: MONTHS,
     datasets: [],
   },
   options: {
@@ -245,7 +269,7 @@ var config = {
     aspectRatio: 2,
     // 크기 조정이 발생할 때 호출
     onResize: function () {},
-
+    backgroundColor: "rgb(255, 205, 86)",
     //차트 위의 데이터셋 뜨는거.
     legend: {
       display: false,
@@ -261,6 +285,7 @@ var config = {
       // 차트 제목
       text: "Chart.js Line Chart",
     },
+
     tooltips: {
       mode: "index",
       intersect: false,
@@ -300,11 +325,28 @@ var config = {
       //y축 설정
       yAxes: [
         {
+          id: "Water",
+          position: "left",
           ticks: {
             // beginAtZero: true; //y축 0부터 시작
-            min: 400, //범위 설정
-            max: 500,
+            min: 0, //범위 설정
+            max: 1000,
             fontSize: 14,
+            fontColor: "rgba(11, 189, 249)",
+          },
+          gridLines: {
+            lineWidth: 1,
+          },
+        },
+        {
+          id: "Light",
+          position: "right",
+          ticks: {
+            // beginAtZero: true; //y축 0부터 시작
+            min: 0, //범위 설정
+            max: 200,
+            fontSize: 14,
+            fontColor: "red",
           },
           gridLines: {
             lineWidth: 0,
@@ -314,36 +356,36 @@ var config = {
     },
   },
 };
-//Here - 여기가 랜덤값 만들어주는 곳이고
-// 400 ~ 500 사이 랜덤값 생성
+//---테스트용 랜덤 값-------------------------------
+// 10 ~ 20 사이 랜덤값 생성
 var randomScalingFactor = function () {
-  return Math.round(Samples.utils.rand(400, 500));
+  return Math.round(Samples.utils.rand(10, 20));
 };
+//-----------------------------테스트용 랜덤 값----
+//--물, 빛 데이터 넣어서 데이터 샘플 생성.-------------------------------
 
-//Here - 여기서 json데이터에서 수위 정보만 담은 배열을 따로 만듬.
-var walArray = [];
-wal.forEach((ele, idx) => {
-  walArray.push(ele.waterLevel);
+waterArr = damObject.map((ele) => {
+  return ele.waterLevel;
 });
-console.log(walArray);
+
+lightArr = damObject.map((ele) => {
+  return ele.light;
+});
 
 // 새로운 데이터 만들기
-//Here - data에 배열을 넣음.
-var datasetSample = {
-  label: "label",
+var datasetSample_Water = {
+  label: "시간당 수위",
+  yAxisID: "Water",
+  backgroundColor: window.chartColors.waterblue,
+  //borderColor: window.chartColors.red,
+  data: waterArr,
+};
+var datasetSample_light = {
+  label: "조도 센서",
+  yAxisID: "Light",
   backgroundColor: window.chartColors.red,
-  borderColor: window.chartColors.red,
-  data: [
-    randomScalingFactor(),
-    randomScalingFactor(),
-    randomScalingFactor(),
-    randomScalingFactor(),
-    randomScalingFactor(),
-    randomScalingFactor(),
-    randomScalingFactor(),
-    randomScalingFactor(),
-  ],
-  // data: walArray,
+  //borderColor: window.chartColors.red,
+  data: lightArr,
 };
 
 // 윈도우가 로드가 될때
@@ -354,75 +396,21 @@ window.onload = function () {
   // config 파일 복사
   var line1Config = JSON.parse(JSON.stringify(config));
   // 데이터셋 생성하기
-  var line1DatasetSample = JSON.parse(JSON.stringify(datasetSample));
+  var line1DatasetSample = JSON.parse(JSON.stringify(datasetSample_Water));
 
-  /// 라벨
-  line1DatasetSample.label = "시간당 수위";
-  // 채우기 옵션
-  line1DatasetSample.fill = "start";
-  // 채웠을 때 색깔
-  line1DatasetSample.backgroundColor = window.chartColors.waterblue;
-  // 선 색깔
-  line1DatasetSample.borderColor = window.chartColors.blue;
+  //  ======================================================== line1
+  // // line2 ========================================================
+  var line2 = document.getElementById("line1").getContext("2d");
+  var line2Config = JSON.parse(JSON.stringify(config));
+  var line2DatasetSample = JSON.parse(JSON.stringify(datasetSample_light));
+
+  // //  ======================================================== line2
+  //데이터셋으로 push하는 차트 데이터를 각각 만들고 차례대로 push한다.
   // 데이터 채우기
   line1Config.data.datasets.push(line1DatasetSample);
+  line1Config.data.datasets.push(line2DatasetSample);
   // 타이틀값
   line1Config.options.title.text = "Area Chart Title";
   // 차트 생성하기
   window.line1 = new Chart(line1, line1Config);
-  //  ======================================================== line1
 };
-
-// x 레이블 가장 끝에 데이터 및 라벨 추가 함수
-//설명 : range를 현재 데이터셋 샘플 길이로 잡고
-var i = 0;
-var range = datasetSample.data.length;
-const addData_lastLabel = () => {
-  var month;
-  month = MONTHS[range + i];
-
-  Chart.instances[0].config.data.labels.push(month);
-  Chart.instances[0].config.data.datasets.forEach(function (dataset) {
-    dataset.data.push(randomScalingFactor());
-    //Here-여기서 랜덤 데이터가 계속 추가된다.
-  });
-  Chart.instances[0].update();
-  //console.log(Chart.instances[elem]);
-
-  if (range + i >= MONTHS.length - 1) {
-    console.log("##############################if문 작동");
-    range = 0;
-    i = 0;
-  } else i++;
-
-  // console.log(`ㅁㅁㅁㅁㅁㅁㅁ먼스 : ${month}`);
-  // console.log("MONTHS.length, range, i");
-  // console.log(MONTHS.length);
-  // console.log(range);
-  // console.log(i);
-  console.log(Chart.instances[0].config.data.datasets[0].data);
-};
-
-// x 레이블 첫번째 데이터 및 라벨 삭제 함수
-//설명 : range를 현재 데이터셋 샘플 길이로 잡고
-const deleteData_firstLabel = () => {
-  // 데이터 값 세팅
-  Chart.instances[0].config.data.labels.shift();
-  Chart.instances[0].config.data.datasets.forEach(function (dataset) {
-    // 첫번쨰 배열값 제거
-    dataset.data.shift();
-  });
-  // 데이터 업데이트
-  Chart.instances[0].update();
-};
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   addData_lastLabel();
-//   deleteData_firstLabel();
-// });
-
-//n초마다 데이터 변환.
-setInterval(() => {
-  addData_lastLabel();
-  deleteData_firstLabel();
-}, 2000);

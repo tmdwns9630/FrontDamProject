@@ -1,29 +1,9 @@
-//1 랜덤 데이터를 1초마다 추가하고 첫번째 레이블 삭제, 마지막 레이블을 추가함.
-/*
-2 jsp에 넣기 전, 로그 데이터를 내부 변수로 넣어서 출력
-ㄴ이 시점에서 데이터 추가 삭제는 고려 안함
-
-*/
 /*
  * utils.js
  * charts.js 만들기 위한 utils.js 부분
  * 공식 사이트에서 제공하는 utils.js
  */
-
-const wal = [
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:43:19" },
-  { damId: "3750", waterLevel: 448, mesurDt: "3750.2022/12/18 16:43:24" },
-  { damId: "3750", waterLevel: 456, mesurDt: "3750.2022/12/18 16:43:29" },
-  { damId: "3750", waterLevel: 456, mesurDt: "3750.2022/12/18 16:43:34" },
-  { damId: "3750", waterLevel: 453, mesurDt: "3750.2022/12/18 16:43:39" },
-  { damId: "3750", waterLevel: 448, mesurDt: "3750.2022/12/18 16:43:44" },
-  { damId: "3750", waterLevel: 448, mesurDt: "3750.2022/12/18 16:43:49" },
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:43:54" },
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:43:59" },
-  { damId: "3750", waterLevel: 450, mesurDt: "3750.2022/12/18 16:44:05" },
-];
-
-("use strict");
+"use strict";
 
 //색깔
 window.chartColors = {
@@ -214,20 +194,17 @@ var MONTHS = [
   "11h",
   "12h",
 ];
-
 // 차트에 표현할 컬러
 var chartColors = {
   red: "rgb(255, 99, 132)",
   orange: "rgb(255, 159, 64)",
   yellow: "rgb(255, 205, 86)",
   green: "rgb(75, 192, 192)",
-  blue: "rgb(0, 0, 150)",
+  blue: "rgb(0, 255, 235)",
   purple: "rgb(153, 102, 255)",
   grey: "rgb(201, 203, 207)",
   waterblue: "rgba(11, 189, 249, 0.65)", //차트 채우기 색은 여기다.
 };
-
-//ㅁㅁㅁㅁㅁㅁㅁㅁ차트에 대한 대부분의 설정ㅁㅁㅁㅁㅁ.
 var config = {
   type: "line",
   data: {
@@ -245,19 +222,8 @@ var config = {
     aspectRatio: 2,
     // 크기 조정이 발생할 때 호출
     onResize: function () {},
-
-    //차트 위의 데이터셋 뜨는거.
-    legend: {
-      display: false,
-    },
-    //선 그래프에서 있는 점을 숨길 때.
-    elements: {
-      point: {
-        radius: 0,
-      },
-    },
     title: {
-      display: false,
+      display: true,
       // 차트 제목
       text: "Chart.js Line Chart",
     },
@@ -279,56 +245,21 @@ var config = {
       },
       y: {
         display: true,
+        beginAtZero: true, //y축 0부터 시작
         scaleLabel: {
           display: true,
           labelString: "Value",
         },
       },
-      //y축 설정
-      xAxes: [
-        {
-          ticks: {
-            //fontColor: "rgba(12, 13, 13, 1)",
-            fontSize: 14,
-          },
-          gridLines: {
-            //color: "rgba(87, 152, 23, 1)",
-            lineWidth: 0,
-          },
-        },
-      ],
-      //y축 설정
-      yAxes: [
-        {
-          ticks: {
-            // beginAtZero: true; //y축 0부터 시작
-            min: 400, //범위 설정
-            max: 500,
-            fontSize: 14,
-          },
-          gridLines: {
-            lineWidth: 0,
-          },
-        },
-      ],
     },
   },
 };
-//Here - 여기가 랜덤값 만들어주는 곳이고
-// 400 ~ 500 사이 랜덤값 생성
+
+// 10 ~ 20 사이 랜덤값 생성
 var randomScalingFactor = function () {
-  return Math.round(Samples.utils.rand(400, 500));
+  return Math.round(Samples.utils.rand(10, 20));
 };
-
-//Here - 여기서 json데이터에서 수위 정보만 담은 배열을 따로 만듬.
-var walArray = [];
-wal.forEach((ele, idx) => {
-  walArray.push(ele.waterLevel);
-});
-console.log(walArray);
-
 // 새로운 데이터 만들기
-//Here - data에 배열을 넣음.
 var datasetSample = {
   label: "label",
   backgroundColor: window.chartColors.red,
@@ -343,7 +274,6 @@ var datasetSample = {
     randomScalingFactor(),
     randomScalingFactor(),
   ],
-  // data: walArray,
 };
 
 // 윈도우가 로드가 될때
@@ -357,7 +287,7 @@ window.onload = function () {
   var line1DatasetSample = JSON.parse(JSON.stringify(datasetSample));
 
   /// 라벨
-  line1DatasetSample.label = "시간당 수위";
+  line1DatasetSample.label = "line1 WaterLevel Sample";
   // 채우기 옵션
   line1DatasetSample.fill = "start";
   // 채웠을 때 색깔
@@ -367,24 +297,22 @@ window.onload = function () {
   // 데이터 채우기
   line1Config.data.datasets.push(line1DatasetSample);
   // 타이틀값
-  line1Config.options.title.text = "Area Chart Title";
+  line1Config.options.title.text = "line1/Fill Option = Start";
   // 차트 생성하기
   window.line1 = new Chart(line1, line1Config);
   //  ======================================================== line1
 };
-
-// x 레이블 가장 끝에 데이터 및 라벨 추가 함수
-//설명 : range를 현재 데이터셋 샘플 길이로 잡고
 var i = 0;
 var range = datasetSample.data.length;
-const addData_lastLabel = () => {
+// 데이터 추가 버튼
+document.getElementById("addData").addEventListener("click", function () {
   var month;
+
   month = MONTHS[range + i];
 
   Chart.instances[0].config.data.labels.push(month);
   Chart.instances[0].config.data.datasets.forEach(function (dataset) {
     dataset.data.push(randomScalingFactor());
-    //Here-여기서 랜덤 데이터가 계속 추가된다.
   });
   Chart.instances[0].update();
   //console.log(Chart.instances[elem]);
@@ -395,34 +323,27 @@ const addData_lastLabel = () => {
     i = 0;
   } else i++;
 
-  // console.log(`ㅁㅁㅁㅁㅁㅁㅁ먼스 : ${month}`);
-  // console.log("MONTHS.length, range, i");
-  // console.log(MONTHS.length);
-  // console.log(range);
-  // console.log(i);
-  console.log(Chart.instances[0].config.data.datasets[0].data);
-};
+  console.log(`ㅁㅁㅁㅁㅁㅁㅁ먼스 : ${month}`);
+  console.log("MONTHS.length, range, i");
+  console.log(MONTHS.length);
+  console.log(range);
+  console.log(i);
+});
 
-// x 레이블 첫번째 데이터 및 라벨 삭제 함수
-//설명 : range를 현재 데이터셋 샘플 길이로 잡고
-const deleteData_firstLabel = () => {
-  // 데이터 값 세팅
-  Chart.instances[0].config.data.labels.shift();
-  Chart.instances[0].config.data.datasets.forEach(function (dataset) {
-    // 첫번쨰 배열값 제거
-    dataset.data.shift();
+// 첫번째 값 제거 버튼
+document.getElementById("addData").addEventListener("click", function () {
+  // 모든 차트 순회하기 위한 KEY 값 배열
+  var keys = Object.keys(Chart.instances);
+  // 차트 순회하기
+  keys.forEach((elem) => {
+    // 데이터 값 세팅
+    //console.log(Chart.instances[elem].config.data);
+    Chart.instances[elem].config.data.labels.shift();
+    Chart.instances[elem].config.data.datasets.forEach(function (dataset) {
+      // 첫번쨰 배열값 제거
+      dataset.data.shift();
+    });
+    // 데이터 업데이트
+    Chart.instances[elem].update();
   });
-  // 데이터 업데이트
-  Chart.instances[0].update();
-};
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   addData_lastLabel();
-//   deleteData_firstLabel();
-// });
-
-//n초마다 데이터 변환.
-setInterval(() => {
-  addData_lastLabel();
-  deleteData_firstLabel();
-}, 2000);
+});

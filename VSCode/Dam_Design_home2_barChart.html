@@ -6,6 +6,14 @@
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
     />
+    <!-- jquery문 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
     <link href="css/siderbar.css" rel="stylesheet" />
     <!-- <link href="/css/styles.css" rel="stylesheet" /> -->
     <meta charset="UTF-8" />
@@ -39,11 +47,13 @@
   <body>
     <!--  ■■■좌측 사이드바 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
     <nav class="main-menu">
+      <!-- <div
+      style="width: 60%; max-width: 100px"></div> -->
+      <div class="area_catcher"></div>
       <img
         class="icon_sun"
         src="https://blog.kakaocdn.net/dn/61zMy/btrh7wm0fCv/IgGApTNnNkY2Y9UVKKWjbK/img.png"
         alt="icon_sun"
-        style="width: 60%; max-width: 100px"
       />
       <ul id="DamList">
         <!-- <li>
@@ -86,39 +96,34 @@
       <!--  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 왼쪽 구역-->
       <!-- 중앙 구역 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
       <div class="middle_page border_blue_dot">
-        <div class="sensor_area border_yellow_dot">
-          <div class="sensor_block externalCard_black">
-            <div class="sensor_name">댐 이름</div>
-            <div class="sensor_data" id="DAM_NAME">댐 n</div>
-          </div>
-          <div class="sensor_block externalCard_black">
-            <div class="sensor_name">현재 근무자</div>
-            <div class="sensor_data" id="WORK_NMPR">1972 명</div>
-          </div>
-          <div class="sensor_block externalCard">
-            <div class="sensor_name">수위 센서</div>
-            <div class="sensor_data" id="WATER_LEVEL">12345</div>
-          </div>
-
-          <div class="sensor_block externalCard">
-            <div class="sensor_name">조도 센서</div>
-            <div class="sensor_data" id="LIGHT">67890</div>
-          </div>
-        </div>
-
         <!--  차트가 들어갈 영역 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ -->
         <div class="chart_area border_blue_dot">
           <!-- <button id="addData">First Out * Last In</button> -->
-          <div class="chart-container border_red_dot">
-            <canvas id="line1" class="border_pink_dot"></canvas>
-          </div>
+
+          <canvas id="line1" class="border_pink_dot"></canvas>
         </div>
         <!-- ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ차트가 들어갈 영역 -->
+        <table class="sensor_area sensor_table border_yellow_dot">
+          <tr class="sensor_th">
+            <th class="sensor_th">댐 이름</th>
+
+            <th class="sensor_th">수위 센서</th>
+            <th class="sensor_th">조도 센서</th>
+            <th class="sensor_th">현재 근무자</th>
+          </tr>
+          <tr class="sensor_row">
+            <td class="sensor_td" id="DAM_NAME ">댐 n</td>
+
+            <td class="sensor_td" id="WATER_LEVEL">12345</td>
+            <td class="sensor_td" id="LIGHT">67890</td>
+            <td class="sensor_td" id="WORK_NMPR">1972 명</td>
+          </tr>
+        </table>
       </div>
       <!--  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 중앙 구역-->
     </div>
     <!-- ############## 자바스크립트 ################## -->
-    <script src="/js/AreaChart.js"></script>
-    <script src="/js/upload.js"></script>
+    <script src="/js/BarChart .js"></script>
+    <script src="/js/upload_home2-bar.js"></script>
   </body>
 </html>
